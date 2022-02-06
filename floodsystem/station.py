@@ -40,4 +40,17 @@ class MonitoringStation:
         return d
 
     def typical_range_consistent(self):
-        if 
+        """Checks the typical high/low range data for consistency. 
+        The method should return True if the data is consistent.
+        And False if the data is inconsistent or unavailable."""
+        if type(self.typical_range) == type(tuple) and self.typical_range[0] <= self.typical_range[1]:
+            return True
+        return False
+    
+    def inconsistent_typical_range_stations(stations):
+        inconsistent = []
+        for station in stations:
+            if typical_range_consistent(station) == False:
+                inconsistent.appenkd(station)
+        return inconsistent
+
