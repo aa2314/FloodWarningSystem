@@ -51,6 +51,6 @@ class MonitoringStation:
         inconsistent = []
         for station in stations:
             if typical_range_consistent(station) == False:
-                inconsistent.appenkd(station)
+                inconsistent.append(station)
         return inconsistent
 
