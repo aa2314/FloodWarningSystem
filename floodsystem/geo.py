@@ -29,9 +29,25 @@ def stations_within_radius(stations, centre, r):
     return sorted(stations_within_R)
 
 def rivers_with_station(stations):
-    rivers_with_st = []
+    """given a list of station objects, returns a container (list/tuple/set) with the names
+       of the rivers with a monitoring station.
+    """
+    rivers_with_st = set()
     for station in stations:
-        rivers_with_st.append((station.name, station.river))
-    return set(rivers_with_st)
+        rivers_with_st.add(station.river)
+    return sorted(rivers_with_st)
 
+def stations_by_river(stations):
+    """returns a dictionary that maps river names to a list of station objects on a given river.
+    """
+    st_by_river = {}
+    for river in rivers_with_station(stations):
+        liste = []
+        for station in stations:
+            if station.river == river:
+                liste.append(station.name)
+        st_by_river[river] = liste
+    return st_by_river 
+    
+    
 
