@@ -49,6 +49,34 @@ def stations_by_river(stations):
                 liste.append(station.name)
         st_by_river[river] = liste
     return st_by_river 
+
+def rivers_by_station_number(stations, N):
+    """Determines the N rivers with the greatest number of monitoring stations. 
+    Returns a list of (river name, number of stations) tuples, sorted by the number of stations. 
+    If more rivers with the same number of stations as the N th entry, include these rivers in the list. """
+
+    # Find length of number of stations on given river
+    river_num = []
+    rivers = station_by_rivers(stations)
+    for river_name in rivers:
+        river_num.append((river_name, len(rivers[river_name])))
+
+    # Sort tuples by number of stations on river
+    river_num_sort = sorted_by_key(river_num, 1, reverse=True)
+    river_num_final = []
+
+    # Collect first N values
+    for i in range(N):
+        river_num_final.append(river_num_sort[i]) 
+
+    # If any other rivers also have the same number of stations as the last one of the list, also add them to the list
+    for river in river_num_sort:
+        if river[1] == river_num_final[N][1]:
+                river_num_final.append(river)
+        else:
+            break
+
+    return river_num_final 
     
 
 
