@@ -57,7 +57,7 @@ def rivers_by_station_number(stations, N):
 
     # Find length of number of stations on given river
     river_num = []
-    rivers = station_by_rivers(stations)
+    rivers = stations_by_river(stations)
     for river_name in rivers:
         river_num.append((river_name, len(rivers[river_name])))
 
@@ -77,6 +77,3 @@ def rivers_by_station_number(stations, N):
             break
 
     return river_num_final 
-    
-
-
