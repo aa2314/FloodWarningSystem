@@ -6,6 +6,7 @@ geographical data.
 
 """
 
+
 from .utils import sorted_by_key
 from haversine import haversine
 
@@ -49,5 +50,5 @@ def stations_by_river(stations):
         st_by_river[river] = liste
     return st_by_river 
     
-    
+
 
