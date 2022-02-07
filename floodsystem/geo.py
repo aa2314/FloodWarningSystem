@@ -71,7 +71,7 @@ def rivers_by_station_number(stations, N):
 
     # If any other rivers also have the same number of stations as the last one of the list, also add them to the list
     for river in river_num_sort:
-        if river[1] == river_num_final[N][1]:
+        if river[1] == river_num_final[N-1][1]:
                 river_num_final.append(river)
         else:
             break
