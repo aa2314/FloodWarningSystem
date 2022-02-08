@@ -31,9 +31,8 @@ def test_rivers_with_station():
 def test_stations_by_river():
     stations = build_station_list()
     dictionary = floodsystem.geo.stations_by_river(stations)
-    for key in dictionary.keys():
-        for station in dictionary[key]:
-            assert key == station.river
+    comparison_list = list(dictionary.keys()) 
+    assert comparison_list == floodsystem.geo.rivers_with_station(stations)
     assert type(dictionary) == type({})
     assert dictionary["River Aire"][1] == "Apperley Bridge"
     assert dictionary["River Aire"][2] == "Armley"
@@ -49,7 +48,7 @@ def test_rivers_by_station_number():
     rivers_by_station_num = floodsystem.geo.rivers_by_station_number(stations, N = 10)
     for station in range(len(rivers_by_station_num)-1):
            assert rivers_by_station_num[station][1] >= rivers_by_station_num[station+1][1]
-           assert type(rivers_by_station_num[station][0]) == type("ABC")
+           assert type(rivers_by_station_num[station][0]) == type("")
 
 
 
