@@ -47,7 +47,7 @@ def stations_by_river(stations):
         for station in stations:
             if station.river == river:
                 liste.append(station.name)
-        st_by_river[river] = liste
+        st_by_river[river] = sorted(liste)
     return st_by_river 
 
 def rivers_by_station_number(stations, N):
