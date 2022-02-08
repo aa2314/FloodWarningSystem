@@ -66,8 +66,7 @@ def rivers_by_station_number(stations, N):
     river_num_final = []
 
     # Collect first N values
-    for i in range(N):
-        river_num_final.append(river_num_sort[i]) 
+    river_num_final = river_num_sort[:N]
 
     # If any other rivers also have the same number of stations as the last one of the list, also add them to the list
     for river in river_num_sort:
