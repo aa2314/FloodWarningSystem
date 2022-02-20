@@ -1,29 +1,13 @@
 from floodsystem.stationdata import build_station_list, update_water_levels, relative_water_level 
-
+from floodsystem.flood import stations_level_over_threshold
 
 def run():
-    # Build list of stations
+    # Build list of stations and type for which tolerance value we are testing
     stations = build_station_list()
+    tol = 0.8
 
-    # Update latest level data for all stations
-    update_water_levels(stations)
-
-    # Print station and latest level for first 5 stations in list
-    names = [
-        'Bourton Dickler', 'Surfleet Sluice', 'Gaw Bridge', 'Hemingford',
-        'Swindon'
-    ]
-    for station in stations:
-        if station.name in names:
-            print("Station name and current level: {}, {}".format(
-                station.name, station.latest_level))
-
-    # Alternative implementation
-    # for station in [s for s in stations if s.name in names]:
-    #     print("Station name and current level: {}, {}".format(station.name,
-    #                                                           station.latest_level))
-
+    print(stations_level_over_threshold(stations, tol))
 
 if __name__ == "__main__":
-    print("*** Task 2A: CUED Part IA Flood Warning System ***")
+    print("*** Task 2B: CUED Part IA Flood Warning System ***")
     run()
