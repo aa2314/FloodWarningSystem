@@ -87,3 +87,11 @@ def update_water_levels(stations):
         if station.measure_id in measure_id_to_value:
             if isinstance(measure_id_to_value[station.measure_id], float):
                 station.latest_level = measure_id_to_value[station.measure_id]
+
+def relative_water_level(self):
+    """returns the latest water level as a fraction of the typical range"""
+    if update_water_levels(self) == None:
+        return None
+    else: ## find ration which gives 1 for maximal value and 0 for minimal value
+        ratio = (update_water_levels(self) - self.typical_range[0]) / (self.typical_range[1] - self.typical_range[0])
+        return ratio
