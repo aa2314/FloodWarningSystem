@@ -6,7 +6,6 @@ for manipulating/modifying station data
 
 """
 
-
 class MonitoringStation:
     """This class represents a river level monitoring station"""
 
@@ -47,6 +46,15 @@ class MonitoringStation:
             return False
         if self.typical_range[0] > self.typical_range[1]:
             return False
+
+    def relative_water_level(self):
+        """returns the latest water level as a fraction of the typical range"""
+        ## find ration which gives 1 for maximal value and 0 for minimal value
+        if self.latest_level != None and self.typical_range_consistent == True:
+            ratio = float(self.latest_level() - self.typical_range[0]) / (self.typical_range[1] - self.typical_range[0])
+            return ratio
+        else:
+            return None
     
 def inconsistent_typical_range_stations(stations):
     inconsistent = []

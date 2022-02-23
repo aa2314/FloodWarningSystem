@@ -1,6 +1,4 @@
 from .utils import sorted_by_key
-from stationdata import relative_water_level
-import stationdata
 
 def stations_level_over_threshold(stations, tol):
     """implement a function that returns a list of tuples, where each tuple holds 
@@ -9,8 +7,9 @@ def stations_level_over_threshold(stations, tol):
     The returned list should be sorted by the relative level in descending order. """
     liste = []
     for station in stations:
-        if relative_water_level(station) <= tol:
-            liste.append((station, relative_water_level(station)))
+        if station.relative_water_level() != None:
+            if station.relative_water_level() >= tol:
+                liste.append((station, station.relative_water_level()))
     liste_finale = sorted_by_key(liste, 1, reverse=True)
     return liste_finale
 
