@@ -42,20 +42,21 @@ class MonitoringStation:
         """Checks the typical high/low range data for consistency. 
         The method should return True if the data is consistent.
         And False if the data is inconsistent or unavailable."""
-        if self.typical_range == None:
+        if (self.typical_range == None) or (self.typical_range[0] > self.typical_range[1]) :
             return False
-        if self.typical_range[0] > self.typical_range[1]:
-            return False
+        else:
+            return True
 
     def relative_water_level(self):
         """returns the latest water level as a fraction of the typical range"""
         ## find ration which gives 1 for maximal value and 0 for minimal value
-        if self.latest_level != None and self.typical_range_consistent == True:
-            ratio = float(self.latest_level() - self.typical_range[0]) / (self.typical_range[1] - self.typical_range[0])
+        if self.typical_range_consistent() :
+            try:
+                ratio = (self.latest_level - self.typical_range[0]) / (self.typical_range[1] - self.typical_range[0])
+            except TypeError:
+                return None
             return ratio
-        else:
-            return None
-    
+
 def inconsistent_typical_range_stations(stations):
     inconsistent = []
     for station in stations:
