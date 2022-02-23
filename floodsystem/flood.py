@@ -9,7 +9,7 @@ def stations_level_over_threshold(stations, tol):
     for station in stations:
         if station.relative_water_level() != None:
             if station.relative_water_level() >= tol:
-                liste.append((station, station.relative_water_level()))
+                liste.append((station.name, station.relative_water_level()))
     liste_finale = sorted_by_key(liste, 1, reverse=True)
     return liste_finale
 
