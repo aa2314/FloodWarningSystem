@@ -1,24 +1,28 @@
-import matplotlib as plt
+import matplotlib
+import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
+from floodsystem.analysis import polyfit
+import numpy as np
 
-def plot_water_levels(station, dates, levels): ### incomplete, left for Bugra
+def plot_water_levels(station, dates, levels): 
+    """function that displays a plot of the water level data against time for a station"""
 
-    t = [datetime(2016, 12, 30), datetime(2016, 12, 31), datetime(2017, 1, 1),
-        datetime(2017, 1, 2), datetime(2017, 1, 3), datetime(2017, 1, 4),
-        datetime(2017, 1, 5)]
-    level = [0.2, 0.7, 0.95, 0.92, 1.02, 0.91, 0.64]
+    plt.plot(dates, levels)
+    plt.xlabel("Date")
+    plt.ylabel("Water Level")
+    plt.title("Station: {}".format(station.name))
+    plt.xticks(rotation=30)
+    plt.tight_layout()
+    return plt.show()
 
-    # Plot
-    plt.plot(t, level)
-
-    # Add axis labels, rotate date labels and add plot title
-    plt.xlabel('date')
-    plt.ylabel('water level (m)')
-    plt.xticks(rotation=45)
-    plt.title("Station A")
-
-    # Display plot
-    plt.tight_layout()  # This makes sure plot does not cut off date labels
-
-    plt.show()
-
+def plot_water_level_with_fit(station, dates, levels, p):
+    plt.plot(dates, levels)
+    val = matplotlib.dates.date2num(dates)##
+    plt.plot(dates, polyfit[0](val))##
+    plt.plot(dates, station.typical_range[0], label = "Typical Low")
+    plt.plot(dates, station.typical_range[1], label = "Typical High")
+    plt.xlabel("Date")
+    plt.ylabel("Water Level")
+    plt.title("Station: {}".format(station.name))
+    plt.xticks(rotation=30)
+    plt.tight_layout()
