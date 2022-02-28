@@ -1,8 +1,9 @@
 import numpy as np
 import matplotlib
+from floodsystem.stationdata import *
 
 
-"""
+
 def polyfit(dates, levels, p):
     conv_dates = matplotlib.dates.date2num(dates)
     d0 = 1
@@ -10,10 +11,5 @@ def polyfit(dates, levels, p):
     coefficients = np.polyfit(shifted_dates, levels, p)
     polynomial = np.poly1d(coefficients)
     return polynomial, d0
-"""
-def polyfit(dates, levels, p):
-    x = matplotlib.dates.date2num(dates)
-    y = levels
-    p_coefficient = np.polyfit(x-x[0], y, p)
-    poly = np.poly1d(p_coefficient)
-    return poly, x[0]
+
+
