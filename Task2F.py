@@ -7,6 +7,7 @@ import datetime
 import matplotlib 
 from floodsystem.utils import sorted_by_key
 import matplotlib.pyplot as plt
+ 
 
 
 
@@ -14,10 +15,10 @@ def run():
     stations = build_station_list() 
     update_water_levels(stations)
     stations_by_water_level = []
-    for station in stations:
+    for station in stations: 
         if station.latest_level == None:
             pass
-        elif station.name == "Letcombe Bassett": #Not updated since 2/2/22, write to check if station is updated for past 10 days
+        elif station.latest_level >= 90:
             pass
         else:
             stations_by_water_level.append((station.name, station.latest_level))
@@ -30,8 +31,8 @@ def run():
     for station in stations:
         for item in range (5):
             if station.name == name_list[item]:
-                print(station.name)
-                dates, levels = fetch_measure_levels(station.measure_id, dt = datetime.timedelta(days = 2))    
+                print(station.name) 
+                dates, levels = fetch_measure_levels(station.measure_id, dt = datetime.timedelta(days = 2))
                 plot_water_level_with_fit(station, dates, levels, 4)
 
 
