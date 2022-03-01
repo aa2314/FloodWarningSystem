@@ -4,7 +4,7 @@ from floodsystem.flood import stations_level_over_threshold
 from floodsystem.datafetcher import fetch_measure_levels
 from floodsystem.plot import plot_water_levels
 import datetime
-import matplotlib
+import matplotlib as plt
 from floodsystem.utils import sorted_by_key
 
 
