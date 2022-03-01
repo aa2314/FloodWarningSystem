@@ -10,6 +10,8 @@ def plot_water_levels(station, dates, levels):
     plt.plot(dates, levels)
     plt.xlabel("Date")
     plt.ylabel("Water Level")
+    plt.plot(dates, [station.typical_range[0]]*len(dates), label = "Typical Low")
+    plt.plot(dates, [station.typical_range[1]]*len(dates), label = "Typical High")
     plt.title("Station: {}".format(station.name))
     plt.xticks(rotation=30)
     plt.tight_layout()
