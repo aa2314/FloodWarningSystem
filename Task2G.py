@@ -9,7 +9,6 @@ def run():
     #Update our values
     update_water_levels(stations)
     ranked_risk = rank_risk(stations, tolerance)
-    print(ranked_risk)
     print("These stations have a low risk of flooding:", ranked_risk[0], "\n")
     print("These stations have a moderate risk of flooding:", ranked_risk[1], "\n")
     print("These stations have a high risk of flooding:", ranked_risk[2], "\n")
