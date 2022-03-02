@@ -35,7 +35,4 @@ def rank_risk(stations, tol):
     high_stations = [data[0] for data in high_risk]
     severe_stations = [data[0] for data in severe_risk]
 
-    return print("These stations have a low risk of flooding:", low_stations, "\n",
-    "These stations have a moderate risk of flooding:", moderate_stations, "\n", 
-    "These stations have a high risk of flooding:", high_stations, "\n", 
-    "These stations have a severe risk of flooding:", severe_stations)
+    return low_stations, moderate_stations, high_stations, severe_stations
