@@ -10,5 +10,5 @@ def test_polyfit():
     p = 4
     polynomial, d0 = polyfit(dates, levels, p)
     assert type(polynomial) == type(np.poly1d([1,2,3]))
-    assert len(np.roots(np.polyder(polynomial, 1))) == 3
+    assert len(np.roots(np.polyder(polynomial, 1))) == p-1
 
