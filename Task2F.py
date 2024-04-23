@@ -2,20 +2,23 @@ from lib2to3.pgen2.tokenize import StopTokenizing
 from floodsystem.stationdata import build_station_list, update_water_levels
 from floodsystem.flood import stations_level_over_threshold
 from floodsystem.datafetcher import fetch_measure_levels
-from floodsystem.plot import plot_water_levels
+from floodsystem.plot import plot_water_levels, plot_water_level_with_fit
 import datetime
-import matplotlib as plt
+import matplotlib 
 from floodsystem.utils import sorted_by_key
+import matplotlib.pyplot as plt
+ 
+
 
 
 def run():
-    stations = build_station_list()
+    stations = build_station_list() 
     update_water_levels(stations)
     stations_by_water_level = []
-    for station in stations:
+    for station in stations: 
         if station.latest_level == None:
             pass
-        elif station.name == "Letcombe Bassett": #Not updated since 2/2/22, write to check if station is updated for past 10 days
+        elif station.latest_level >= 90:
             pass
         else:
             stations_by_water_level.append((station.name, station.latest_level))
@@ -26,14 +29,13 @@ def run():
     print(sorted_list)
 
     for station in stations:
-        for p in range (5):
-            if station.name == name_list[p]:
-                print(station.name)
-                dates, levels = fetch_measure_levels(station.measure_id,dt = datetime.timedelta(days = 10))
-                plot_water_levels(station, dates, levels)
+        for item in range (5):
+            if station.name == name_list[item]:
+                print(station.name) 
+                dates, levels = fetch_measure_levels(station.measure_id, dt = datetime.timedelta(days = 2))
+                plot_water_level_with_fit(station, dates, levels, 4)
 
-  
 
 if __name__ == "__main__":
-    print("*** Task 2E: CUED Part IA Flood Warning System ***")
+    print("*** Task 2F: CUED Part IA Flood Warning System ***")
     run()
